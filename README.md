@@ -1,1 +1,1 @@
-# bs-ui-sistema: Um template para sistemas web.
+# bs-ui-sistema: Um tema básico para sistemas web.
