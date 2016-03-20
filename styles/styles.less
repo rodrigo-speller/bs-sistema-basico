@@ -1,0 +1,142 @@
+/*!
+ * bs-sistema v0.0.1 - Um template para sistemas web.
+ * Tema Básico v0.0.1
+ * Copyright (c) 2016 Rodrigo Speller
+ * Licença em https://github.com/rodrigo-speller/bs-sistema-basico/blob/master/LICENSE
+ */
+
+@import "@{components-path}bs-sistema/less/bs-sistema.less";
+@import "@{components-path}bootstrap-palette/less/palettes/neutral-3.less";
+@import "@{components-path}bootstrap-palette/less/palettes/tertiary-cmy.less";
+
+@components-path:                           "/components/";
+
+
+@page-bg:                                   darken(@color-white, 6.5%);
+
+// bootstrap
+// =========
+
+@navbar-height:                             50px;
+@navbar-margin-bottom:                      @line-height-computed;
+@navbar-border-radius:                      @border-radius-base;
+@navbar-padding-horizontal:                 floor((@grid-gutter-width / 2));
+@navbar-padding-vertical:                   ((@navbar-height - @line-height-computed) / 2);
+@navbar-collapse-max-height:                340px;
+
+@navbar-default-color:                      @color-white;
+@navbar-default-bg:                         @brand-primary;
+@navbar-default-border:                     darken(@navbar-default-bg, 6.5%);
+
+@navbar-default-link-color:                 @color-white;
+@navbar-default-link-hover-color:           lighten(@navbar-default-link-color, 6.5%);
+@navbar-default-link-hover-bg:              lighten(@navbar-default-bg, 6.5%);
+@navbar-default-link-active-color:          darken(@navbar-default-link-color, 6.5%);
+@navbar-default-link-active-bg:             darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-disabled-color:        darken(@navbar-default-bg, 13%);
+@navbar-default-link-disabled-bg:           transparent;
+
+@navbar-default-brand-color:                @navbar-default-link-color;
+@navbar-default-brand-hover-color:          darken(@navbar-default-brand-color, 10%);
+@navbar-default-brand-hover-bg:             transparent;
+
+@navbar-default-toggle-hover-bg:            lighten(@navbar-default-bg, 6.5%);
+@navbar-default-toggle-icon-bar-bg:         @color-white;
+@navbar-default-toggle-border-color:        @navbar-default-border;
+
+// bootstrap-palette
+// =================
+
+// Neutral-3
+@color-neutral-3-white:                     #FFFFFF;
+@color-neutral-3-black:                     #333333;
+
+// Tertiary-CMY
+@color-tertiary-cmy-red:                    #d9534f; // bootstrap brand-danger
+@color-tertiary-cmy-green:                  #5cb85c; // bootstrap brand-success
+@color-tertiary-cmy-blue:                   darken(#428bca, 6.5%); // bootstrap brand-primary #337ab7
+@color-tertiary-cmy-yellow:                 #f0ad4e; // bootstrap brand-warning
+@color-tertiary-cmy-cyan:                   #5bc0de; // bootstrap brand-info
+
+@color-contrast-threshold:                  57%;
+
+// Tema
+                        // Neutral-3        // Tertiary-CMY
+@colors:                white, black, gray, red, orange, yellow, chartreuse,
+                        green, springgreen, cyan, azure, blue, violet, magenta,
+                        rose;
+
+@color-white:           @color-neutral-3-white;
+@color-black:           @color-neutral-3-black;
+@color-gray:            @color-neutral-3-gray;
+
+@color-red:             @color-tertiary-cmy-red;
+@color-orange:          @color-tertiary-cmy-orange;
+@color-yellow:          @color-tertiary-cmy-yellow;
+@color-chartreuse:      @color-tertiary-cmy-chartreuse;
+@color-green:           @color-tertiary-cmy-green;
+@color-springgreen:     @color-tertiary-cmy-springgreen;
+@color-cyan:            @color-tertiary-cmy-cyan;
+@color-azure:           @color-tertiary-cmy-azure;
+@color-blue:            @color-tertiary-cmy-blue;
+@color-violet:          @color-tertiary-cmy-violet;
+@color-magenta:         @color-tertiary-cmy-magenta;
+@color-rose:            @color-tertiary-cmy-rose;
+
+//
+// ESTILOS
+//
+
+#messages > .dropdown-menu {
+    @media(min-width:@screen-md-min) {
+        width: 300px;
+    }
+
+    @media(min-width:@screen-lg-min) {
+        width: 500px;
+    }
+
+    @media(max-width:@grid-float-breakpoint-max) {
+        width: 320px;
+    }
+}
+
+#alerts > .dropdown-menu {
+    @media(min-width:@screen-md-min) {
+        width: 300px;
+        > li > a {
+            white-space: nowrap !important;
+        }
+    }
+}
+
+#tasks .progress {
+    margin: 0;
+
+    @media(min-width:@screen-md-min) {
+        width: 300px;
+    }
+}
+
+#user > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+@media(min-width:@grid-float-breakpoint) {
+    #messages,
+    #tasks,
+    #alerts {
+         > .dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+    }
+}
+
+@media(max-width:@screen-sm-max) {
+    #tasks,
+    #user .badge {
+        display: none;
+    }
+}

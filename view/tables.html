@@ -1,0 +1,234 @@
+<!-- Copyright (c) 2016 Rodrigo Speller -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Tabelas</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Tabela</div>
+            </div>
+            <div class="panel-body">
+                <p class="text-center">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="table-striped" checked><span class="badge">.table-striped</span>
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="table-bordered" checked><span class="badge">.table-bordered</span>
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="table-hover" checked><span class="badge">.table-hover</span>
+                    </label>
+                </p>
+                <div class="table-responsive">
+                    <table id="tabelaExemplo" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Símbolo</th>
+                                <th>Nome</th>
+                                <th>Nome em latim</th>
+                                <th>Origem do nome</th>
+                                <th class="text-center">Massa atômica relativa</th>
+                                <th>Série</th>
+                                <th class="text-center">Grupo</th>
+                                <th class="text-center">Período</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var tabelaPeriodica = [
+            { z: 1, simbolo: 'H', nome: 'Hidrogênio', nomeLatim: 'Hydrogenium', nomeOrigem: 'Gera água, do grego hydror+genos', massa: 1.00794, grupo: 1, periodo: 1, serie: 'Não Metal' },
+            { z: 2, simbolo: 'He', nome: 'Hélio', nomeLatim: 'Helium', nomeOrigem: 'Sol, do grego helios', massa: 4.002602, grupo: 18, periodo: 1, serie: 'Gás Nobre' },
+            { z: 3, simbolo: 'Li', nome: 'Lítio', nomeLatim: 'Lithium', nomeOrigem: 'Rocha, do grego lithos', massa: 6.941, grupo: 1, periodo: 2, serie: 'Metal Alcalino' },
+            { z: 4, simbolo: 'Be', nome: 'Berílio', nomeLatim: 'Beryllium', nomeOrigem: 'Berilo, azul-esverdeada, do grego beryllos', massa: 9.012182, grupo: 2, periodo: 2, serie: 'Metais alcalinoterroso' },
+            { z: 5, simbolo: 'B', nome: 'Boro', nomeLatim: 'Borium', nomeOrigem: 'Bórax, do árabe buraq', massa: 10.811, grupo: 13, periodo: 2, serie: 'Metaloides' },
+            { z: 6, simbolo: 'C', nome: 'Carbono', nomeLatim: 'Carbonium', nomeOrigem: 'Carvão, do latim carbo', massa: 12.0107, grupo: 14, periodo: 2, serie: 'Não Metal' },
+            { z: 7, simbolo: 'N', nome: 'Nitrogênio', nomeLatim: 'Nitrogenium', nomeOrigem: 'Gera salitre (nitrato), do grego nitro+gen', massa: 14.0067, grupo: 15, periodo: 2, serie: 'Não Metal' },
+            { z: 8, simbolo: 'O', nome: 'Oxigênio', nomeLatim: 'Oxygenium', nomeOrigem: 'Gera ácido, do grego oxys+genes', massa: 15.9994, grupo: 16, periodo: 2, serie: 'Não Metal' },
+            { z: 9, simbolo: 'F', nome: 'Flúor', nomeLatim: 'Fluorum', nomeOrigem: 'Fluir, do latim fluere', massa: 18.9984032, grupo: 17, periodo: 2, serie: 'Halogênio' },
+            { z: 10, simbolo: 'Ne', nome: 'Neônio', nomeLatim: 'Neon', nomeOrigem: 'Novo, do grego neos', massa: 20.1797, grupo: 18, periodo: 2, serie: 'Gás Nobre' },
+            { z: 11, simbolo: 'Na', nome: 'Sódio', nomeLatim: 'Natrium', nomeOrigem: '', massa: 22.98976928, grupo: 1, periodo: 3, serie: 'Metal Alcalino' },
+            { z: 12, simbolo: 'Mg', nome: 'Magnésio', nomeLatim: 'Magnesium', nomeOrigem: 'Magnésia, Grécia', massa: 24.305, grupo: 2, periodo: 3, serie: 'Metais alcalinoterroso' },
+            { z: 13, simbolo: 'Al', nome: 'Alumínio', nomeLatim: 'Alumen', nomeOrigem: 'Sal amargo, do latim alumen, ver alúmen', massa: 26.9815386, grupo: 13, periodo: 3, serie: 'Outros Metais' },
+            { z: 14, simbolo: 'Si', nome: 'Silício', nomeLatim: 'Silicium', nomeOrigem: 'Sílex, do latim silex', massa: 28.0855, grupo: 14, periodo: 3, serie: 'Metaloides' },
+            { z: 15, simbolo: 'P', nome: 'Fósforo', nomeLatim: 'Phosphorus', nomeOrigem: 'Do grego phos phoros', massa: 30.973762, grupo: 15, periodo: 3, serie: 'Não Metal' },
+            { z: 16, simbolo: 'S', nome: 'Enxofre', nomeLatim: 'Sulphur', nomeOrigem: '', massa: 32.065, grupo: 16, periodo: 3, serie: 'Não Metal' },
+            { z: 17, simbolo: 'Cl', nome: 'Cloro', nomeLatim: 'Clorum', nomeOrigem: 'Amarelo esverdeado, do grego chloros', massa: 35.453, grupo: 17, periodo: 3, serie: 'Halogênio' },
+            { z: 18, simbolo: 'Ar', nome: 'Argônio', nomeLatim: 'Argon', nomeOrigem: 'Inerte, lento, do grego argos', massa: 39.948, grupo: 18, periodo: 3, serie: 'Gás Nobre' },
+            { z: 19, simbolo: 'K', nome: 'Potássio', nomeLatim: 'Kalium', nomeOrigem: '', massa: 39.0983, grupo: 1, periodo: 4, serie: 'Metal Alcalino' },
+            { z: 20, simbolo: 'Ca', nome: 'Cálcio', nomeLatim: 'Calcium', nomeOrigem: 'Cal, do latim calx', massa: 40.078, grupo: 2, periodo: 4, serie: 'Metais alcalinoterroso' },
+            { z: 21, simbolo: 'Sc', nome: 'Escândio', nomeLatim: 'Scandium', nomeOrigem: 'Escandinávia', massa: 44.955912, grupo: 3, periodo: 4, serie: 'Metal de Transição' },
+            { z: 22, simbolo: 'Ti', nome: 'Titânio', nomeLatim: 'Titanium', nomeOrigem: 'Titãs, mitologia grega', massa: 47.867, grupo: 4, periodo: 4, serie: 'Metal de Transição' },
+            { z: 23, simbolo: 'V', nome: 'Vanádio', nomeLatim: 'Vanadium', nomeOrigem: 'Freya, deusa nórdica, do nórdico antigo Vanadis', massa: 50.9415, grupo: 5, periodo: 4, serie: 'Metal de Transição' },
+            { z: 24, simbolo: 'Cr', nome: 'Cromo', nomeLatim: 'Chromium', nomeOrigem: 'Cor, do grego chroma', massa: 51.9961, grupo: 6, periodo: 4, serie: 'Metal de Transição' },
+            { z: 25, simbolo: 'Mn', nome: 'Manganês', nomeLatim: 'Manganum', nomeOrigem: 'Imã, do latim magnes', massa: 54.938045, grupo: 7, periodo: 4, serie: 'Metal de Transição' },
+            { z: 26, simbolo: 'Fe', nome: 'Ferro', nomeLatim: 'Ferrum', nomeOrigem: 'Ferro, do latim', massa: 55.845, grupo: 8, periodo: 4, serie: 'Metal de Transição' },
+            { z: 27, simbolo: 'Co', nome: 'Cobalto', nomeLatim: 'Cobaltum', nomeOrigem: 'Duende, gnomo, corrupção do alemão Kobold', massa: 58.933195, grupo: 9, periodo: 4, serie: 'Metal de Transição' },
+            { z: 28, simbolo: 'Ni', nome: 'Níquel', nomeLatim: 'Niccolum', nomeOrigem: 'Níquelina, do alemão Kupfernickel', massa: 58.6934, grupo: 10, periodo: 4, serie: 'Metal de Transição' },
+            { z: 29, simbolo: 'Cu', nome: 'Cobre', nomeLatim: 'Cuprum', nomeOrigem: 'Chipre, do latim cyprium', massa: 63.546, grupo: 11, periodo: 4, serie: 'Metal de Transição' },
+            { z: 30, simbolo: 'Zn', nome: 'Zinco', nomeLatim: 'Zincum', nomeOrigem: 'Estanho, do alemão Zinn', massa: 65.409, grupo: 12, periodo: 4, serie: 'Metal de Transição' },
+            { z: 31, simbolo: 'Ga', nome: 'Gálio', nomeLatim: 'Galium', nomeOrigem: 'Gália, do latim Gallia', massa: 69.723, grupo: 13, periodo: 4, serie: 'Outros Metais' },
+            { z: 32, simbolo: 'Ge', nome: 'Germânio', nomeLatim: 'Germanium', nomeOrigem: 'Alemanha, do latim Germania', massa: 72.64, grupo: 14, periodo: 4, serie: 'Metaloides' },
+            { z: 33, simbolo: 'As', nome: 'Arsénio', nomeLatim: 'Arsenicum', nomeOrigem: 'Masculino, do grego arsenikos', massa: 74.9216, grupo: 15, periodo: 4, serie: 'Metaloides' },
+            { z: 34, simbolo: 'Se', nome: 'Selénio', nomeLatim: 'Selenium', nomeOrigem: 'Lua, do grego selene', massa: 78.96, grupo: 16, periodo: 4, serie: 'Não Metal' },
+            { z: 35, simbolo: 'Br', nome: 'Bromo', nomeLatim: 'Bromum', nomeOrigem: 'Mau cheiro, fedido, do grego broma', massa: 79.904, grupo: 17, periodo: 4, serie: 'Halogênio' },
+            { z: 36, simbolo: 'Kr', nome: 'Criptônio', nomeLatim: 'Krypton', nomeOrigem: 'Oculto, do grego kryptos', massa: 83.798, grupo: 18, periodo: 4, serie: 'Gás Nobre' },
+            { z: 37, simbolo: 'Rb', nome: 'Rubídio', nomeLatim: 'Rubidium', nomeOrigem: 'Vermelho, do latim rubidus', massa: 85.4678, grupo: 1, periodo: 5, serie: 'Metal Alcalino' },
+            { z: 38, simbolo: 'Sr', nome: 'Estrôncio', nomeLatim: 'Strontium', nomeOrigem: 'Strontian, Escócia', massa: 87.62, grupo: 2, periodo: 5, serie: 'Metais alcalinoterroso' },
+            { z: 39, simbolo: 'Y', nome: 'Ítrio', nomeLatim: 'Yttrium', nomeOrigem: 'Ytterby, Suécia', massa: 88.90585, grupo: 3, periodo: 5, serie: 'Metal de Transição' },
+            { z: 40, simbolo: 'Zr', nome: 'Zircônio', nomeLatim: 'Zirconium', nomeOrigem: 'Dourado, do persa zargun', massa: 91.224, grupo: 4, periodo: 5, serie: 'Metal de Transição' },
+            { z: 41, simbolo: 'Nb', nome: 'Nióbio', nomeLatim: 'Niobium', nomeOrigem: 'Niobe, filha de Tântalo mitologia grega', massa: 92.906, grupo: 5, periodo: 5, serie: 'Metal de Transição' },
+            { z: 42, simbolo: 'Mo', nome: 'Molibdénio', nomeLatim: 'Molybdenum', nomeOrigem: 'Chumbo, do grego molybdos', massa: 95.94, grupo: 6, periodo: 5, serie: 'Metal de Transição' },
+            { z: 43, simbolo: 'Tc', nome: 'Tecnécio', nomeLatim: 'Technetium', nomeOrigem: 'Artificial, do grego technetos', massa: '[98]', grupo: 7, periodo: 5, serie: 'Metal de Transição' },
+            { z: 44, simbolo: 'Ru', nome: 'Rutênio', nomeLatim: 'Ruthenium', nomeOrigem: 'Rússia, do latim Ruthenia', massa: 101.07, grupo: 8, periodo: 5, serie: 'Metal de Transição' },
+            { z: 45, simbolo: 'Rh', nome: 'Ródio', nomeLatim: 'Rhodium', nomeOrigem: 'Cor-de-rosa, do grego rhodon', massa: 102.905, grupo: 9, periodo: 5, serie: 'Metal de Transição' },
+            { z: 46, simbolo: 'Pd', nome: 'Paládio', nomeLatim: 'Palladium', nomeOrigem: 'Palas, asteróide', massa: 106.42, grupo: 10, periodo: 5, serie: 'Metal de Transição' },
+            { z: 47, simbolo: 'Ag', nome: 'Prata', nomeLatim: 'Argentum', nomeOrigem: 'Prata, do grego argyros', massa: 107.8682, grupo: 11, periodo: 5, serie: 'Metal de Transição' },
+            { z: 48, simbolo: 'Cd', nome: 'Cádmio', nomeLatim: 'Cadmium', nomeOrigem: 'Solo, corrupção do grego kadmia[carece de fontes]', massa: 112.411, grupo: 12, periodo: 5, serie: 'Metal de Transição' },
+            { z: 49, simbolo: 'In', nome: 'Índio', nomeLatim: 'Indium', nomeOrigem: 'Azul indigo, violeta, do latim indicium', massa: 114.818, grupo: 13, periodo: 5, serie: 'Outros Metais' },
+            { z: 50, simbolo: 'Sn', nome: 'Estanho', nomeLatim: 'Stannum', nomeOrigem: 'Duro, do latim stannum', massa: 118.71, grupo: 14, periodo: 5, serie: 'Outros Metais' },
+            { z: 51, simbolo: 'Sb', nome: 'Antimônio', nomeLatim: 'Stibium', nomeOrigem: '', massa: 121.76, grupo: 15, periodo: 5, serie: 'Metaloides' },
+            { z: 52, simbolo: 'Te', nome: 'Telúrio', nomeLatim: 'Tellurium', nomeOrigem: 'Terra, planeta, do latim tellus', massa: 128.6, grupo: 16, periodo: 5, serie: 'Metaloides' },
+            { z: 53, simbolo: 'I', nome: 'Iodo', nomeLatim: 'Iodum', nomeOrigem: 'Violeta, do grego ioeides', massa: 126.904, grupo: 17, periodo: 5, serie: 'Halogênio' },
+            { z: 54, simbolo: 'Xe', nome: 'Xenônio', nomeLatim: 'Xenon', nomeOrigem: 'Estranho, do grego xenos', massa: 131.293, grupo: 18, periodo: 5, serie: 'Gás Nobre' },
+            { z: 55, simbolo: 'Cs', nome: 'Césio', nomeLatim: 'Caesium', nomeOrigem: 'Azul-celeste, do latim caesius', massa: 132.9054519, grupo: 1, periodo: 6, serie: 'Metal Alcalino' },
+            { z: 56, simbolo: 'Ba', nome: 'Bário', nomeLatim: 'Barium', nomeOrigem: 'Densidade, pesado, do grego barys', massa: 137.327, grupo: 2, periodo: 6, serie: 'Metais alcalinoterroso' },
+            { z: 57, simbolo: 'La', nome: 'Lantânio', nomeLatim: 'Lanthanum', nomeOrigem: 'Do grego lanthanein', massa: 138.90547, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 58, simbolo: 'Ce', nome: 'Cério', nomeLatim: 'Cerium', nomeOrigem: 'Ceres, planeta-anão e deus romano', massa: 140.116, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 59, simbolo: 'Pr', nome: 'Praseodímio', nomeLatim: 'Praseodymium', nomeOrigem: 'Verde, do grego prasios', massa: 140.90765, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 60, simbolo: 'Nd', nome: 'Neodímio', nomeLatim: 'Neodymium', nomeOrigem: 'Novo gêmeo, do grego neos+didymos', massa: 144.242, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 61, simbolo: 'Pm', nome: 'Promécio', nomeLatim: 'Promethium', nomeOrigem: 'Prometeu, mitologia grega', massa: '[145]', grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 62, simbolo: 'Sm', nome: 'Samário', nomeLatim: 'Samarium', nomeOrigem: 'Samarskite, mineral', massa: 150.36, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 63, simbolo: 'Eu', nome: 'Európio', nomeLatim: 'Europium', nomeOrigem: 'Europa', massa: 151.964, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 64, simbolo: 'Gd', nome: 'Gadolínio', nomeLatim: 'Gadolinium', nomeOrigem: 'Johan Gadolin', massa: 157.25, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 65, simbolo: 'Tb', nome: 'Térbio', nomeLatim: 'Terbium', nomeOrigem: 'Ytterby, Sweden', massa: 158.92535, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 66, simbolo: 'Dy', nome: 'Disprósio', nomeLatim: 'Dysprosium', nomeOrigem: 'Inacessível, do grego dysprositos', massa: 162.5, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 67, simbolo: 'Ho', nome: 'Hólmio', nomeLatim: 'Holmium', nomeOrigem: 'Estocolmo, do latim Holmia', massa: 164.93, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 68, simbolo: 'Er', nome: 'Érbio', nomeLatim: 'Erbium', nomeOrigem: 'Ytterby, Suécia', massa: 167.259, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 69, simbolo: 'Tm', nome: 'Túlio', nomeLatim: 'Thulium', nomeOrigem: 'Thule', massa: 168.93421, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 70, simbolo: 'Yb', nome: 'Itérbio', nomeLatim: 'Ytterbium', nomeOrigem: 'Ytterby, Suécia', massa: 173.04, grupo: '', periodo: 6, serie: 'Lantanídeo' },
+            { z: 71, simbolo: 'Lu', nome: 'Lutécio', nomeLatim: 'Lutetium', nomeOrigem: 'Paris, do latim Lutetia', massa: 174.967, grupo: 3, periodo: 6, serie: 'Lantanídeo' },
+            { z: 72, simbolo: 'Hf', nome: 'Háfnio', nomeLatim: 'Hafnium', nomeOrigem: 'Copenhagen, do latim Hafnia', massa: 178.49, grupo: 4, periodo: 6, serie: 'Metal de Transição' },
+            { z: 73, simbolo: 'Ta', nome: 'Tântalo (tantálio)', nomeLatim: 'Tantalum', nomeOrigem: 'Rei Tântalo, mitologia grega', massa: 180.94788, grupo: 5, periodo: 6, serie: 'Metal de Transição' },
+            { z: 74, simbolo: 'W', nome: 'Tungstênio', nomeLatim: 'Wolframium', nomeOrigem: 'Lobo espuma, do alemão Wol+fram[carece de fontes]', massa: 183.84, grupo: 6, periodo: 6, serie: 'Metal de Transição' },
+            { z: 75, simbolo: 'Re', nome: 'Rênio', nomeLatim: 'Rhenium', nomeOrigem: 'Rio Reno, Alemanha, do latim Rhenia', massa: 186.207, grupo: 7, periodo: 6, serie: 'Metal de Transição' },
+            { z: 76, simbolo: 'Os', nome: 'Ósmio', nomeLatim: 'Osmium', nomeOrigem: 'Odor, do grego osme', massa: 190.23, grupo: 8, periodo: 6, serie: 'Metal de Transição' },
+            { z: 77, simbolo: 'Ir', nome: 'Irídio', nomeLatim: 'Iridium', nomeOrigem: 'Íris, deusa do arco-íris, do grego Iris', massa: 192.217, grupo: 9, periodo: 6, serie: 'Metal de Transição' },
+            { z: 78, simbolo: 'Pt', nome: 'Platina', nomeLatim: 'Platinum', nomeOrigem: 'Prata pequena, do espanhol plata+ina(diminutivo)', massa: 195.084, grupo: 10, periodo: 6, serie: 'Metal de Transição' },
+            { z: 79, simbolo: 'Au', nome: 'Ouro', nomeLatim: 'Aurum', nomeOrigem: 'Dourado, do latim aureus', massa: 196.966569, grupo: 11, periodo: 6, serie: 'Metal de Transição' },
+            { z: 80, simbolo: 'Hg', nome: 'Mercúrio', nomeLatim: 'Hydrargyrum', nomeOrigem: 'Líquido prateado, do latim hydra+argyros', massa: 200.59, grupo: 12, periodo: 6, serie: 'Metal de Transição' },
+            { z: 81, simbolo: 'Tl', nome: 'Tálio', nomeLatim: 'Thallium', nomeOrigem: 'Tiro, do grego thallos', massa: 204.3833, grupo: 13, periodo: 6, serie: 'Outros Metais' },
+            { z: 82, simbolo: 'Pb', nome: 'Chumbo', nomeLatim: 'Plumbum', nomeOrigem: 'Do latim plumbum', massa: 207.2, grupo: 14, periodo: 6, serie: 'Outros Metais' },
+            { z: 83, simbolo: 'Bi', nome: 'Bismuto', nomeLatim: 'Bismuthum', nomeOrigem: 'Massa branca, corrupção do alemão Weisse+masse', massa: 208.9804, grupo: 15, periodo: 6, serie: 'Outros Metais' },
+            { z: 84, simbolo: 'Po', nome: 'Polônio', nomeLatim: 'Polonium', nomeOrigem: 'Polônia', massa: '[210]', grupo: 16, periodo: 6, serie: 'Metaloides' },
+            { z: 85, simbolo: 'At', nome: 'Ástato', nomeLatim: 'Astatum', nomeOrigem: 'Instável, do grego astatos', massa: '[210]', grupo: 17, periodo: 6, serie: 'Halogênio' },
+            { z: 86, simbolo: 'Rn', nome: 'Rádon (Radônio)', nomeLatim: 'Radon', nomeOrigem: 'emanação do Radium', massa: '[220]', grupo: 18, periodo: 6, serie: 'Gás Nobre' },
+            { z: 87, simbolo: 'Fr', nome: 'Frâncio', nomeLatim: 'Francium', nomeOrigem: 'França', massa: '[223]', grupo: 1, periodo: 7, serie: 'Metal Alcalino' },
+            { z: 88, simbolo: 'Ra', nome: 'Rádio', nomeLatim: 'Radium', nomeOrigem: 'Raio, do latim radius', massa: '[226]', grupo: 2, periodo: 7, serie: 'Metais alcalinoterroso' },
+            { z: 89, simbolo: 'Ac', nome: 'Actínio', nomeLatim: 'Actinium', nomeOrigem: 'Raio, do grego aktínos', massa: '[227]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 90, simbolo: 'Th', nome: 'Tório', nomeLatim: 'Thorium', nomeOrigem: 'Thor, deus nórdico', massa: 232.03806, grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 91, simbolo: 'Pa', nome: 'Protactínio', nomeLatim: 'Protactinium', nomeOrigem: 'Primeiro actínio, do grego protos+aktínos', massa: 231.03588, grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 92, simbolo: 'U', nome: 'Urânio', nomeLatim: 'Uranium', nomeOrigem: 'Urano, planeta e deus grego', massa: 238.02891, grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 93, simbolo: 'Np', nome: 'Ne(p)túnio', nomeLatim: 'Neptunium', nomeOrigem: 'Netuno, planeta e deus grego', massa: '[237]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 94, simbolo: 'Pu', nome: 'Plutônio', nomeLatim: 'Plutonium', nomeOrigem: 'Plutão, planeta e deus grego', massa: '[244]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 95, simbolo: 'Am', nome: 'Amerício', nomeLatim: 'Americium', nomeOrigem: 'Américas, continente.', massa: '[243]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 96, simbolo: 'Cm', nome: 'Cúrio', nomeLatim: 'Curium', nomeOrigem: 'Pierre e Marie Curie', massa: '[247]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 97, simbolo: 'Bk', nome: 'Berquélio', nomeLatim: 'Berkelium', nomeOrigem: 'Berkeley, Califórnia', massa: '[247]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 98, simbolo: 'Cf', nome: 'Califórnio', nomeLatim: 'Californium', nomeOrigem: 'Califórnia, estado norte-americano', massa: '[251]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 99, simbolo: 'Es', nome: 'Einsténio', nomeLatim: 'Einsteinium', nomeOrigem: 'Albert Einstein', massa: '[252]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 100, simbolo: 'Fm', nome: 'Férmio', nomeLatim: 'Fermium', nomeOrigem: 'Enrico Fermi', massa: '[257]', grupo: '', periodo: 7, serie: 'Outros Metais' },
+            { z: 101, simbolo: 'Md', nome: 'Mendelévio', nomeLatim: 'Mendelevium', nomeOrigem: 'Dmitri Mendeleyev', massa: '[258]', grupo: '', periodo: 7, serie: 'Gás Nobre' },
+            { z: 102, simbolo: 'No', nome: 'Nobélio', nomeLatim: 'Nobelium', nomeOrigem: 'Alfred Nobel', massa: '[259]', grupo: '', periodo: 7, serie: 'Actinídios' },
+            { z: 103, simbolo: 'Lr', nome: 'Laurêncio', nomeLatim: 'Lawrencium', nomeOrigem: 'Ernest Lawrence', massa: '[262]', grupo: 3, periodo: 7, serie: 'Actinídios' },
+            { z: 104, simbolo: 'Rf', nome: 'Rutherfórdio', nomeLatim: 'Rhuterfordium', nomeOrigem: 'Ernest Rutherford', massa: 261, grupo: 4, periodo: 7, serie: 'Metal de Transição' },
+            { z: 105, simbolo: 'Db', nome: 'Dúbnio', nomeLatim: 'Dubnium', nomeOrigem: 'Dubna, Rússia', massa: '[262]', grupo: 5, periodo: 7, serie: 'Metal de Transição' },
+            { z: 106, simbolo: 'Sg', nome: 'Seabórgio', nomeLatim: 'Seaborgium', nomeOrigem: 'Glenn T. Seaborg', massa: '[266]', grupo: 6, periodo: 7, serie: 'Metal de Transição' },
+            { z: 107, simbolo: 'Bh', nome: 'Bóhrio', nomeLatim: 'Bohrium', nomeOrigem: 'Niels Bohr', massa: '[264]', grupo: 7, periodo: 7, serie: 'Metal de Transição' },
+            { z: 108, simbolo: 'Hs', nome: 'Hássio', nomeLatim: 'Hassium', nomeOrigem: 'Hessen, Alemanha', massa: '[277]', grupo: 8, periodo: 7, serie: 'Metal de Transição' },
+            { z: 109, simbolo: 'Mt', nome: 'Meitnério', nomeLatim: 'Meitnerium', nomeOrigem: 'Lise Meitner', massa: '[268]', grupo: 9, periodo: 7, serie: 'Metal de Transição' },
+            { z: 110, simbolo: 'Ds', nome: 'Darmstácio', nomeLatim: 'Darmstadtium', nomeOrigem: 'Darmstadt, Alemanha', massa: '[271]', grupo: 10, periodo: 7, serie: 'Metal de Transição' },
+            { z: 111, simbolo: 'Rg', nome: 'Roentgénio (Roentgênio)', nomeLatim: 'Roentgenium', nomeOrigem: 'Wilhelm Conrad Röntgen', massa: '[272]', grupo: 11, periodo: 7, serie: 'Metal de Transição' },
+            { z: 112, simbolo: 'Cn', nome: 'Copernício', nomeLatim: 'Copernicium', nomeOrigem: 'Nicolau Copérnico', massa: '[277]', grupo: 12, periodo: 7, serie: 'Metal de Transição' },
+            { z: 113, simbolo: 'Uut', nome: 'Unúntrio', nomeLatim: 'Ununtrium', nomeOrigem: '113, do latim un+un e do grego tri', massa: '[284]', grupo: 13, periodo: 7, serie: 'Outros Metais' },
+            { z: 114, simbolo: 'Fl', nome: 'Fleróvio', nomeLatim: 'Flerovium', nomeOrigem: 'Georgy Flyorov', massa: '[289]', grupo: 14, periodo: 7, serie: 'Actinídios' },
+            { z: 115, simbolo: 'Uup', nome: 'Ununpêntio', nomeLatim: 'Ununpentium', nomeOrigem: '115, do latim un+un e do grego pent', massa: '[288]', grupo: 15, periodo: 7, serie: 'Outros Metais' },
+            { z: 116, simbolo: 'Lv', nome: 'Livermório', nomeLatim: 'Livermorium', nomeOrigem: 'Laboratório Nacional de Lawrence Livermore', massa: '[292]', grupo: 16, periodo: 7, serie: 'Actinídios' },
+            { z: 117, simbolo: 'Uus', nome: 'Ununséptio', nomeLatim: 'Ununsentium', nomeOrigem: '117, do latim un+un+sent', massa: '[288]', grupo: 15, periodo: 7, serie: 'Outros Metais' },
+            { z: 118, simbolo: 'Uuo', nome: 'Ununóctio', nomeLatim: 'Ununoctium', nomeOrigem: '118, do latim un+un+oct', massa: '[294]', grupo: 18, periodo: 7, serie: 'Metal de Transição' }];
+
+        function createRow(elemento) {
+            var row = document.createElement('tr'),
+                td;
+
+            td = document.createElement('td');
+            td.textContent = elemento.z;
+            td.classList.add('text-center');
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.textContent = elemento.simbolo;
+            td.classList.add('text-center');
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.textContent = elemento.nome;
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.textContent = elemento.nomeLatim;
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.textContent = elemento.nomeOrigem;
+            row.appendChild(td);
+
+            td = document.createElement('td');
+
+            if('number' == typeof elemento.massa) {
+                td.textContent = elemento.massa.toFixed(2).replace('.', ',');
+            } else {
+                td.textContent = elemento.massa;
+            }
+            td.classList.add('text-right');
+
+
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.textContent = elemento.serie;
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.textContent = elemento.grupo;
+            td.classList.add('text-center');
+            row.appendChild(td);
+
+            td = document.createElement('td');
+            td.textContent = elemento.periodo;
+            td.classList.add('text-center');
+            row.appendChild(td);
+
+            return row;
+        }
+
+        var $table = $('#tabelaExemplo');
+
+        $table.children('tbody').append(tabelaPeriodica.map(function(x) { return createRow(x); }));
+        $table.closest('.panel-body').find(':input[type=checkbox]').change(function () {
+            $table.toggleClass(this.value);
+        })
+
+    });
+</script>
